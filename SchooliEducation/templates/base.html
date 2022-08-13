@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>topbgr.com - Plateforme d'apprentissage et de préparation aux examens et concours</title>  
+    <meta name="keywords" content="sujets correction corrigé concours sous region régional afrique congo">
+    <meta name="description" content="Plateforme de telechargement de sujets corrigés des examens et concours.">
+    <meta name="author" content="topbgr">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="#">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'schooli/css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'schooli/css/style.css' %}">
+    <!-- ALL VERSION CSS -->
+    <link rel="stylesheet" href="{% static 'schooli/css/versions.css ' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'schooli/css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'schooli/css/custom.css' %}">
+
+    <!-- Modernizer for Portfolio -->
+    <script src="{% static 'schooli/js/modernizer.js' %}"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="host_version"> 
+
+	<!-- Modal -->
+	
+
+    <!-- LOADER 
+	<div id="preloader">
+		<div class="loader-container">
+			<div class="progress-br float shadow">
+				<div class="progress__item"></div>
+			</div>
+		</div>
+	</div>
+  -->
+	<!-- END LOADER -->	
+			
+	<!-- Start header -->
+	<header class="top-navbar">
+		
+			<div class="container-fluid">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="{%url 'blogs:home'%}">
+				<img src="{% static 'schooli/images/logo-schooli.png' %}" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					
+				</button>
+						
+				<div class="collapse navbar-collapse" id="navbars-host">
+					<ul class="navbar-nav ml-auto">
+					
+				
+					{% if request.user.profile.is_teacher == True %}
+						
+                        <li class="nav-item dropdown">
+					
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              cours et TD
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                              <a class="dropdown-item" href="{% url 'courses:create_classe' %}">Créer une classe</a>
+                              <a class="dropdown-item" href="{% url 'courses:create_subject' %}">Créer un sujet</a>
+                              <a class="dropdown-item" href="{% url 'courses:create_teaching' %}">Créer une leçon</a>
+                            </div>
+                          
+                          </li>                
+                          <li class="nav-item dropdown">
+					
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Concours&exam
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                              <a class="dropdown-item" href="{% url 'examen_et_concours:add_subject' %}">Ajouter sujets</a>
+                              <a class="dropdown-item" href="{% url 'examen_et_concours:add_examen' %}">concours&examen </a>
+                            
+                            </div>
+                          
+                          </li> 
+
+
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'blogs:post_list' %} ">Blog</a>
+						  </li>
+						  <li class="nav-item">
+							
+						  </li>
+						  <li class="nav-item"><a class="nav-link" href="{% url 'store:index' %}">Librairie</a></li>
+						{% else %}
+		
+					<li class="nav-item">
+							<a class="nav-link" href="{% url 'examen_et_concours:touslesconcours' %}">Concours</a>
+					</li>
+					
+					
+						<li class="nav-item" >
+							<a class="nav-link" href="{% url 'courses:home' %}">Cours et TD</a>
+							
+						</li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'store:index' %}">Librairie</a></li> 	
+						
+						
+						{% endif %}
+						
+					  </ul>
+
+					  <ul class="navbar-nav ml-auto">
+						{% if request.user.is_authenticated %}
+				<li class="nav-item dropdown">
+					
+				  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{{request.user.username}}
+				  </a>
+				  <div class="dropdown-menu" aria-labelledby="dropdown-a">
+					<a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a>
+					<a class="dropdown-item" href="{% url 'account_logout' %}">Sortie</a>
+				  </div>
+				
+				</li>
+				{% else %}
+			
+                        <li class="nav-item  dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"  data-toggle="dropdown"   aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span> Mon compte </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                                                           
+                                    <a class="dropdown-item" href="{% url 'account_login' %}" >
+                                        <span class="fa fa-user icon-min-width-20"></span>Se connecter
+                                    </a>
+                                
+                                
+                                    <a  class="dropdown-item" href="{% url 'account_signup' %}">
+                                        <span class="fa fa-user-plus icon-min-width-20"></span>Créer un compte
+                                    </a>
+                                  
+                                
+                        </div>
+                                                          
+                    </li>
+
+				  {% endif %}
+			  </ul>
+	
+			</nav>
+				</div>	
+               
+		
+	
+	</header>
+
+	<!-- End header -->
+
+
+	
+    {% block content %}
+    
+    {% endblock %}
+		
+		
+		
+		
+			
+    <footer>
+      <div class="copyrights">
+        <div class="container">
+            <div class="footer-distributed">
+                <div class="footer-center">                   
+                    <p class="footer-company-name">All Rights Reserved. &copy; 2020 <a href="#">SchooliEducation Design By : <a href="https://html.design/">html design</a></p>
+                </div>
+            </div>
+        </div><!-- end container -->
+	</div><!-- end copyrights -->
+
+    </footer><!-- end footer -->
+
+    
+
+
+
+    <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+
+    <!-- ALL JS FILES -->
+    <script src="{% static 'schooli/js/all.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'schooli/js/custom.js' %}"></script>
+	<script src="{% static 'schooli/js/timeline.min.js' %}"></script>
+	<script>
+		timeline(document.querySelectorAll('.timeline'), {
+			forceVerticalMode: 700,
+			mode: 'horizontal',
+			verticalStartPosition: 'left',
+			visibleItems: 4
+		});
+	</script>
+			
+</body>
+</html>

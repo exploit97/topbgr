@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- page concours_subjects-->
+
+<div id="overviews" class="section wb">
+    <div class="container">
+        <div class="section-title row text-center">
+
+        
+        <h3>Recherche de sujets du Concours {{evaluation.name }}</h3>
+        {% for level in evaluation.level_set.all %}
+        
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">{{level.name}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for matter in level.matter_set.all %}
+            <tr>
+              <th scope="row">1</th>
+              <td><a href="{% url 'examen_et_concours:subjects'  evaluation.id matter.id level.id %}">{{matter.name}}</a></td>
+             
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+            
+            
+        
+        {% endfor %}
+     </div>
+       </div>
+       </div>
+
+              
+  <!--javascript-->
+  <script src="{% static 'schooli/js/jquery-3.5.1.min.js'  %}"></script>
+  <script src="{% static 'schooli/myjs/jqueryMatter.js' %}"></script>
+  <script src="{% static 'schooli/myjs/jqueryLevel.js' %}"></script>
+       {% endblock %} 
+    

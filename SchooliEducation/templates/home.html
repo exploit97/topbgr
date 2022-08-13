@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load account socialaccount %}
+{% block content %}
+
+
+<div id="overviews" class="section wb">
+    <div class="container">
+        <div class="row"> 
+            <div class="col-lg-9"> 
+              <!-- jumbontron-->
+            
+                
+                    <div class=" row">
+                <div class=" col jumbotron jumbotron-fluid" >
+                    <div class="container" >
+                      <h1 class="display-5">Rejoignez plus de 50,000+ étudiants à travers l'afrique et partagez toutes vos questions et solutions.</h1>
+                      <p class="lead">La plateforme de Concourir vous permet de vous perfectionner dans la préparation des examens et concours
+                          .</p>
+                    </div>
+                  </div>
+                    </div>
+              
+             
+<!--end jumbontron -->
+<div class="row">
+  <div class="col-md-12">
+    <h3>Listes des concours ayant des épreuves corrigées</h3>
+    <p class="lead"> Vous y trouverez tous les types de concours et leurs epreuves corrigés</p>
+  
+    <h4>Par Categories :  </h4>
+    {% for conc_categorie in conc_categories %}
+    <h3>{{ conc_categorie.name }} </h3>
+    
+   {% for concours in conc_categorie.evaluation_set.all %}
+
+   <div class="card md-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{concours.image.url }}" class="card-img" alt="..." width="75px" height="100px">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><a href="{% url 'examen_et_concours:concours_matters' concours.id %}" title="">{{concours.name}}</a></h5>
+         
+          <a href="{% url 'examen_et_concours:concours_description' concours.id %}"> <button type="button" class="btn btn-primary">la suite </button></a>
+          <a href="{% url 'examen_et_concours:concours_matters' concours.pk %}"><button type="button" class="btn btn-primary">sujets et corrigés</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+     {% endfor %}
+    
+{% endfor %}
+<ul>
+    <li> <a href="{% url 'examen_et_concours:touslesconcours' %}"> Afficher tous les concours</a></li>
+</ul>
+
+
+</div>
+</div>
+  
+        
+ <div class="row">
+  <div class="col">
+    <h3>Banque de cours et TD corrigés</h3>
+    <p class="lead"> Vous y trouverez tous les types d'exercices.</p>
+   <h4>Par domaines : </h4>
+   <ul>
+   {% for cours in courses %}
+
+    <li> <a href="{% url 'courses:course_list' cours.id %}"> {{ cours.title }} </a></li>
+    
+     
+
+    </ul>
+    {% endfor %}
+   </ul>
+
+</div>
+ </div>
+           
+        <!-- end title -->
+    
+      <div class="row">
+     <h2>Articles recents </h2>
+    <br/><br/>
+       <!--blog post-->
+    {% if posts %}
+ 
+      
+        {% for post in posts %}
+      
+        <div class="col-sm-6">
+
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{ post.post_image.url }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'blogs:post_detail' post.id %}"> {{ post.title }}</a></h5>
+            <p class="card-text">{{ post.description }}</p>
+            
+          </div>
+        </div>
+       
+         {% if request.user.is_authenticated %}
+         {% if request.user.profile.is_teacher == True %}
+          {% if user.id == post.author.id %}
+          <a href="{% url 'blogs:update_post' post.id %}" class="btn btn-info">Mettre à jour</a>
+          {% endif %}
+          {% endif %}
+          {% endif %}
+        
+  
+   
+        {% endfor %}
+      </div>
+        {% else %} 
+
+<p>Aucun post, désolé!!!</p>
+</div>
+        {% endif %}
+    
+        
+  
+      
+      
+
+
+
+         
+                 
+    </div>
+
+
+
+  
+  </div>
+{% include 'aside.html' %}
+ 
+       
+        </div>
+
+        </div><!-- end section -->
+
+    
+{% endblock %}
+
+

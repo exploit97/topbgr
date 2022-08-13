@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- page touslesconcours -->
+
+<div id="overviews" class="section wb">
+  <div class="container">
+      <div class="row"> 
+          <div class="col-lg-9">
+<div id="overviews">
+    <div class="container">
+        <div class="section-title row text-center">
+            <div class="col-md-8 offset-md-2">
+                <h1><strong> Listes de tous les concours et examens</strong>
+                  <br>Avec sujets corrigés des épreuves. </h1>
+                 
+            </div>
+           
+           
+               
+        
+           
+               
+        </div>
+    
+        
+
+
+        
+
+        <hr class="invis"> 
+        <div class="row"> 
+         
+            {% for category in page_obj %}
+            <h2>{{ category.name}}</h2>
+            
+          {% for concours in category.evaluation_set.all %}
+            <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="{{concours.image.url }}" class="card-img" alt="..." width="75px" height="100px">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"><a href="{% url 'examen_et_concours:concours_matters' concours.pk %}" title="">{{concours.name}}</a></h5>
+                  <p class="card-text"> {{concours.description|truncatewords:50 }}</p>
+                  <a href="{% url 'examen_et_concours:concours_description' concours.pk %}"> <button type="button" class="btn btn-primary">la suite </button></a>
+                  <a href="{% url 'examen_et_concours:concours_matters' concours.pk %}"><button type="button" class="btn btn-primary">Voir les sujets</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+            <!-- end col -->
+            
+            
+          
+            
+                                            </div><!-- end row -->
+                                            {% endfor %}
+                                            <div class="pagination">
+                                              <span class="step-links">
+                                              {% if page_obj.has_previous %}
+                                              <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                              {% endif %}
+                                              <span class="current">
+                                              Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+                                              </span>
+                                              {% if page_obj.has_next %}
+                                              <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                              {% endif %}
+                                              </span>
+                                              </div>
+      </div><!-- end container -->
+  </div><!-- end section -->
+          </div><!-- end col -->
+
+  
+</div><!-- end row -->
+</div><!-- end container -->
+</div><!-- end section -->
+{% endblock %}

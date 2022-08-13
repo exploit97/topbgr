@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+  {% block content %}
+<div class="text-center">
+    <h1 class="brand"><a href="/">Librairie de SchooliEducation</a></h1>
+    <div class="address-bar">Trouvez de bon bookins à bon prix!!!</div>
+  </div>
+    {% include 'store/list.html' with list_title='Nos derniers livres' %}
+
+    {% endblock %}

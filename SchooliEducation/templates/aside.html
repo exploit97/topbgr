@@ -1,0 +1,47 @@
+{% load i18n %}
+<div class="col-lg-3 col-3 right-single">
+               
+    <div class="widget-categories">
+        <h3 class="widget-title">Les Nouvelles</h3>
+        <ul>
+            {% for post in posts %}
+            {% if post %}
+            <li><a href="{% url 'blogs:post_detail' post.id %}">{{post.title}}</a></li>
+            {% else %}
+            <li>Aucun post disponible</li>
+            {% endif %}
+            {% endfor %}
+     
+        </ul>
+    </div>
+
+    <div class="widget-categories">
+        <h3 class="widget-title">Categories</h3>
+        <ul>
+            {% for post in posts %}
+            {% if post.categorie %}
+            <li><a href="{% url 'blogs:same_categorie_list' post.categorie %}">{{post.categorie}}</a></li>
+            {% else %}
+            <li>Aucune catégorie disponible</li>
+            {% endif %}
+           
+       {% endfor %}
+        </ul>
+    </div>
+   
+
+<div >
+    
+</div>
+<div>
+<p>créer un compte enseignant?<strong><a href="{%url 'users:demande' %}">Cliquez ici</a></strong> </p>
+</div>
+<div class="widget-tags">
+    <h3 class="widget-title">Cours et TD</h3>
+    
+    
+   
+</div>
+
+    
+</div>

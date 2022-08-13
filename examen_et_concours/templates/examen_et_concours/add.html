@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div id="overviews" class="section wb">
+    <div class="container">
+        <div class="section-title row text-center">
+<form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p }}
+
+        <button class="site-btn">Créer</button>
+
+  </form>  
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div id="overviews" class="section wb">
+    <div class="container">
+        <div class="section-title row text-center">
+<form action="{% url 'examen_et_concours:add_subject' %}" method="POST" >
+        {% csrf_token %}
+
+        <h3>Ajout des éléments du sujets </h3>
+
+        <div class="form-row">
+        <div class="col">
+            <h4>Ajout de la solution</h4>
+            <label for="solution_name">Nom</label><input type="text" name="solution_name" id="solution_name">
+            <label for="solution_file">Fichier</label><input type="file" name="solution_file">
+        </div>
+        <br/><br/>
+            <div class="col">
+               
+        <table style="width: 70%;" >
+          <tr>
+            <h4>Ajout divers</h4>
+          <th>level</th>
+          <th>matter</th>
+          <th>etablissement</th>
+          <th>year</th>
+          <th>country</th>
+          </tr>
+          <tr>
+                <td>
+                    <input type="text" name="level">
+                     
+                    </td>
+                
+                    <td>
+                           
+                         <input type="text" name="matter">
+                   
+                        </td>
+           <td>
+           <input type="text" name="etablissement">
+             
+           </td>
+          
+           <td>
+               <input type="date" name="year">
+           </td>
+           <td>
+            <input type="text" name="country">
+        </td>
+        
+          </tr>
+      <br/>
+        <tr>
+        <td ><input type="submit" name="send" value="send"></td>
+        <td><input type="reset" name="Clean" value="Clean"></td>
+        </tr>
+        </table>
+      
+    </div>
+       </form>
+       
+       </div>
+       </div>
+       </div>
+
+    
+
+{% endblock %}

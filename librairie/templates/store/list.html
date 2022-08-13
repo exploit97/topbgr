@@ -1,0 +1,64 @@
+{% load static %}
+
+
+
+<div class="container">
+  <div class="row">
+    
+<div class="col-lg-12">
+    <hr>
+    <h2 class="intro-text text-center">{{ list_title }}
+    </h2>
+    <hr class="detail-separator">
+</div>
+  
+
+{% comment %}
+  {% include 'store/search_form.html' %}
+  {% endcomment %}
+
+{% if books|length_is:"0" %}
+    <div class="text-center">
+      Palsambleu ! Nous n'avons trouvé aucun résultat à cette requête. Même pas de quoi se ronger la chique !
+      Partez de nouveau à l'abordage !
+    </div>
+
+{% else %}
+
+    {% for book in books %}
+   
+          <div class="col-sm-4 text-center">
+            <a href="{% url 'store:detail' book_id=book.id %}">
+              {% if book.picture %}
+              <img class="img-responsive" src="{{ book.picture.url }}" alt="{{ book.title }}" width="250px" height="250px">
+              {% endif %}
+            </a>
+            <h3><a href="{% url 'store:detail' book_id=book.id %}">{{ book.title }}</a></h3>
+            {% for author in book.authors.all %}
+                <p>{{ author.name }}</p>
+              </div>
+            {% endfor %}
+       
+      
+        {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+    {% endfor %}
+
+{% endif %}
+
+{% if paginate %}
+  <div class="clearfix"></div>
+  <nav aria-label="">
+    <ul class="pager">
+      {% if books.has_previous %}
+          <li><a href="?page={{ books.previous_page_number }}">Précédent</a></li>
+      {% endif %}
+      {% if books.has_next %}
+          <li><a href="?page={{ books.next_page_number }}">Suivant</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
+</div>
+</div>
+
+

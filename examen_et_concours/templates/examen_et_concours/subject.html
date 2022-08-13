@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- page touslesconcours -->
+
+<div id="overviews" class="section wb">
+  <div class="container">
+      <div class="row"> 
+          <div class="col-lg-9">
+<div id="overviews">
+    <div class="container">
+        <div class="section-title row text-center">
+            <div class="col-md-8 offset-md-2">
+                <h1><strong>Concours Corrigé</strong>   
+                  <br>Epreuve de : {{subject.matter.name }}</h1>
+                 
+            </div>
+           
+           
+               
+        
+           
+               
+        </div>
+    
+        
+
+
+        
+
+        <hr class="invis"> 
+        <div class="row"> 
+         
+          
+            <h2>{{ subject.title}}</h2>
+            
+         
+            
+                <img src="{{subject.subject_image.url }}" class="card-img" alt="..." width="100px" height="225px">
+              </div>
+              <div class="row"> 
+                {% if request.user.is_authenticated %}
+                {% if request.user.profile.is_teacher == True or es is not None %}
+                    <img src="{{ es.es_image.url }}" class="card-img" alt="..." width="100px" height="225px">
+                    {% endif %}
+                    {% else %}
+                    <p>Vous devez avoir un abonnement ou etre contributeur pour acceder aux solutions.</p>
+                    <ul>
+                        <li><a href="{% url 'memberships:select_membership'%}">
+                            Souscrire à un abonnement
+                        </a></li>
+                        <li><a href="{% url 'users:demande'%}">
+                            Devenir contributeur
+                        </a></li>
+                    </ul>
+                  
+                  {% endif %}
+             
+            </div>
+          </div>
+         
+            <!-- end col -->
+            
+            
+          
+            
+      </div><!-- end container -->
+  </div><!-- end section -->
+          </div><!-- end col -->
+
+  
+</div><!-- end row -->
+</div><!-- end container -->
+
+{% endblock %}
