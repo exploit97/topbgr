@@ -92,22 +92,23 @@ TEMPLATES = [
 DEBUG = config('DEBUG', cast=bool)
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': '5432',
-    }
+    "default": dj_database_url.config(
+        default=config("DATABASE_URL", default="postgres://exploit:19041997@localhost:5432/mrtestsdb"),
+        conn_max_age=600,
+    )
 }
+
 #DATABASES = {
-    #"default": dj_database_url.config(
-      #  default=config("DATABASE_URL", default="postgres://SchooliEducation:SchooliEducation@localhost:5432/SchooliEducation"
-       # ),
-       # conn_max_age=600,
-   # )
+    #'default': {
+       # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': config('DB_NAME'),
+       # 'USER': config('DB_USER'),
+       # 'PASSWORD': config('DB_PASSWORD'),
+      #  'HOST': config('DB_HOST'),
+      #  'PORT': '5432',
+   # }
 #}
+
 
 
 AUTHENTICATION_BACKENDS = (
