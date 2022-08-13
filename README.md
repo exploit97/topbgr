@@ -1,5 +1,5 @@
-# SchooliEducation
-(https://schoolieducation.herokuapp.com/)
+# topbgr
+(https://topbgrs.herokuapp.com/)
 ## Technologies Used
 ### Front End Technologies:
 • HTML
@@ -12,7 +12,7 @@
 • Python
 • Django Framework
 ### Database Used:
-• mysql
+• postgresql
 
 
 ## Features:
@@ -22,10 +22,10 @@
 
 
 ## Setup
-1. Git Clone this project: https://github.com/exploit97/SchooliEduation
-2. Create an python environment with ```python -m venv venv``` or ```virtualenv venv``` and activate it with (windows:```venv\Scripts\activate```, Mac/Linux:```source venv/bin/activate```.
+1. Git Clone this project: https://github.com/exploit97/topbgr
+2. Create an python environment with ```python -m venv env``` or ```virtualenv env``` and activate it with (windows:```eenv\Scripts\activate```, Mac/Linux:```source venv/bin/activate```.
 3. Install required packages: ``` pip install -r requirements.txt ```
 4. Run app: ``` python manage.py runserver ```
 
 ## Certificate
-This project is officially certificated by **Exploit lothar** the creator of this project.
+This project is officially certificated by **Joe lothar** the creator of this project.
