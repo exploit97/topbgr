@@ -1,4 +1,5 @@
 
+from distutils.command.upload import upload
 from django.db import models
 from PIL import Image
 from memberships.models import UserMembership,Membership
@@ -41,7 +42,7 @@ class Year(models.Model):
 
 class Evaluation(models.Model):
     name = models.CharField('Nom',max_length=100)
-    image= models.ImageField('/image')
+    image= models.ImageField(upload_to='image')
     description = models.TextField('Description')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.CASCADE, blank= True,null= True)
