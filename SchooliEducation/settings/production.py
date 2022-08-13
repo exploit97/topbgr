@@ -33,3 +33,5 @@ sentry_sdk.init(
     release="SchooliEducation@%s" % SchooliEducation.__version__,
     integrations=[DjangoIntegration()],
 )
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
